@@ -1,0 +1,36 @@
+{
+  "$id": "https://github.com/w6d-io/jsonschema/testdata/test2_schema.json",
+  "$schema": "http://bad-draft.org/bad-draft",
+  "type": "object",
+  "definitions": {
+    "listen": {
+      "title": "listen port",
+      "type": "string"
+    }
+  },
+
+  "properties": {
+    "listen" : {
+      "$ref": "#/definitions/listen"
+    },
+    "get": {
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "timeout": {
+          "type": "number",
+          "minimum": 200
+        }
+      }
+    },
+    "list": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["1", "2"]
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+listen: ":8080"
+get:
+  url: "https://unit-test.local:latest"
+  timeout: 600
+list:
+  - "1"
+  - "2"

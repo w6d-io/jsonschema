@@ -1,0 +1,49 @@
+{
+  "$id": "https://github.com/w6d-io/jsonschema/testdata/test1_schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "definitions": {
+    "listen": {
+      "title": "listen port",
+      "type": "string",
+      "oneOf": [
+        {
+          "pattern": "^:([0-9]+)$"
+        },
+        {
+          "pattern": "^([0-9]{1,3}\\.){3}[0-9]{1,3}:([0-9]+)$"
+        },
+        {
+          "format": "uri"
+        }
+      ],
+      "examples": [
+        "127.0.0.1:6831"
+      ]
+    }
+  },
+  "properties": {
+    "listen" : {
+      "$ref": "#/definitions/listen"
+    },
+    "get": {
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "timeout": {
+          "type": "number",
+          "minimum": 200
+        }
+      }
+    },
+    "list": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["1", "2"]
+      }
+    }
+  }
+}
