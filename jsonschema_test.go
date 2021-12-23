@@ -26,6 +26,18 @@ list:
   - "2"
 `
 
+var test2 = `{
+  "listen": ":8080",
+  "get": {
+    "url": "unit-test:latest",
+    "timeout": 600
+  },
+  "list": [
+    "1",
+    "2"
+  ]
+}`
+
 var _ = Describe("", func() {
 	Context("", func() {
 		BeforeEach(func() {
@@ -38,6 +50,10 @@ var _ = Describe("", func() {
 
 			Expect(jsonschema.AddSchema(jsonschema.Config, schema1)).To(Succeed())
 			Expect(jsonschema.Config.Validate(foo)).To(Succeed())
+		})
+		It("success the config validation with byte", func() {
+			Expect(jsonschema.AddSchema(jsonschema.Config, schema1)).To(Succeed())
+			Expect(jsonschema.Config.Validate([]byte(test2))).To(Succeed())
 		})
 		It("fail on schema does not exists", func() {
 			var foo map[string]interface{}

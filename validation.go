@@ -57,7 +57,10 @@ func (st SchemaType) Validate(raw interface{}) error {
 	if err != nil {
 		return err
 	}
-	out, err := json.Marshal(raw)
+	out, ok := raw.([]byte)
+	if !ok {
+		out, err = json.Marshal(raw)
+	}
 	cmdx.Must(err, "marshal data for validation failed")
 	return s.Validate(bytes.NewReader(out))
 }
