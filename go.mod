@@ -1,6 +1,6 @@
 module github.com/w6d-io/jsonschema
 
-go 1.17
+go 1.19
 
 require (
 	github.com/onsi/ginkgo v1.16.4
