@@ -2,13 +2,15 @@ package jsonschema
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"fmt"
+	"strings"
+
 	"github.com/ory/jsonschema/v3"
 	"github.com/tidwall/gjson"
 	"github.com/w6d-io/x/cmdx"
 	"github.com/w6d-io/x/errorx"
-	"strings"
 )
 
 type SchemaType int
@@ -53,7 +55,7 @@ func (st SchemaType) Validate(raw interface{}) error {
 		return err
 	}
 	cmdx.Must(c.AddResource(sc.id, strings.NewReader(sc.data)), "add schema resource failed")
-	s, err := c.Compile(sc.id)
+	s, err := c.Compile(context.Background(), sc.id)
 	if err != nil {
 		return err
 	}
