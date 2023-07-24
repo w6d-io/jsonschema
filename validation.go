@@ -5,11 +5,12 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"strings"
+
 	"github.com/ory/jsonschema/v3"
 	"github.com/tidwall/gjson"
 	"github.com/w6d-io/x/cmdx"
 	"github.com/w6d-io/x/errorx"
-	"strings"
 )
 
 type SchemaType int
