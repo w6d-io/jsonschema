@@ -2,6 +2,7 @@ package jsonschema
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"fmt"
 	"github.com/ory/jsonschema/v3"
@@ -53,7 +54,7 @@ func (st SchemaType) Validate(raw interface{}) error {
 		return err
 	}
 	cmdx.Must(c.AddResource(sc.id, strings.NewReader(sc.data)), "add schema resource failed")
-	s, err := c.Compile(sc.id)
+	s, err := c.Compile(context.Background(), sc.id)
 	if err != nil {
 		return err
 	}
